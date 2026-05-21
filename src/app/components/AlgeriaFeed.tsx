@@ -70,7 +70,7 @@ const MORE_DATA: InfoItem[][] = [
       title: "La Casbah : Un labyrinthe d'histoire",
       category: 'Culture',
       description: "Ses ruelles étroites et ses maisons traditionnelles en font l'un des sites les plus emblématiques de la Méditerranée.",
-      image: "https://images.unsplash.com/photo-1602496252172-8030f4df6ed0?w=800",
+      image: "../public/pexels-erkocphoto-26823221.jpg",
       date: "08 Mai 2026",
       views: 2156
     },

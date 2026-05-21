@@ -43,7 +43,7 @@ export function SiteCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ y: -8 }}
-        className="group relative overflow-hidden rounded-3xl bg-white shadow-2xl border border-gray-50 cursor-pointer h-full"
+        className="group relative overflow-hidden  rounded-3xl bg-white shadow-2xl border border-gray-50 cursor-pointer h-full"
         onClick={() => onSelect?.(id)}
       >
         {/* Image container */}

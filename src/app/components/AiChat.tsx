@@ -67,6 +67,15 @@ export default function AiChat({ onSelectSite }: { onSelectSite: (name: string) 
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState<'chat' | 'suggest'>('chat');
 
+  useEffect(() => {
+    const handleOpen = () => {
+      setOpen(true);
+      setTab('chat');
+    };
+    window.addEventListener('open-wejha-ai', handleOpen);
+    return () => window.removeEventListener('open-wejha-ai', handleOpen);
+  }, []);
+
   // Chat state
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: 'model', text: 'Marhba ! Je suis **Wejha AI**, votre guide touristique intelligent. 🌟\n\nPosez-moi vos questions sur les sites patrimoniaux d\'Algérie, ou laissez-moi vous suggérer des destinations selon vos préférences !' },
