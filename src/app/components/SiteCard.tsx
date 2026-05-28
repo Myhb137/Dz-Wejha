@@ -15,6 +15,7 @@ interface SiteCardProps {
   duration: string;
   accessibility: string;
   image: string;
+  description: string;
   onSelect?: (id: number) => void;
   isFavorite?: boolean;
   onToggleFavorite?: (id: number) => void;
@@ -31,6 +32,7 @@ export function SiteCard({
   duration,
   accessibility,
   image,
+  description,
   onSelect,
   isFavorite = false,
   onToggleFavorite,
@@ -86,6 +88,9 @@ export function SiteCard({
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#0F6E56] transition-colors">
                 {name}
               </h3>
+              <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed mt-2">
+                {description}
+              </p>
             </div>
             <div className="text-right">
               <div className="inline-flex items-center gap-1 bg-yellow-50 px-3 py-1 rounded-lg">
@@ -193,9 +198,12 @@ export function SiteCard({
           <h3 className="font-bold text-gray-900 line-clamp-2 group-hover:text-[#0F6E56] transition-colors mb-1">
             {name}
           </h3>
-          <p className="text-xs text-gray-500 flex items-center gap-1">
+          <p className="text-xs text-gray-500 flex items-center gap-1 mb-2">
             <MapPin size={12} />
             {wilaya}
+          </p>
+          <p className="text-gray-500 text-xs line-clamp-3 leading-relaxed">
+            {description}
           </p>
         </div>
 

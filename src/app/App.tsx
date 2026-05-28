@@ -38,7 +38,7 @@ import HeritageGame from './components/HeritageGame';
 import AlgeriaFeed from './components/AlgeriaFeed';
 
 // ── Types ───────────────────────────────────────────────────────────────────
-type SiteCategory = 'Historique' | 'Nature' | 'Sahara' | 'Religieux' | 'UNESCO' | 'Aventure' | 'Culture' | 'Architecture' | 'Plage' | 'Vue Panoramique' | 'Luxe' | 'Famille' | 'Neige' | 'Vie Nocturne' | 'Musée';
+type SiteCategory = 'Historique' | 'Nature' | 'Sahara' | 'Religieux' | 'UNESCO' | 'Aventure' | 'Culture' | 'Architecture' | 'Plage' | 'Vue Panoramique' | 'Luxe' | 'Famille' | 'Neige' | 'Vie Nocturne' | 'Musée' | 'Randonnée' | 'Monument' | 'Jardin';
 
 interface Site {
   id: number;
@@ -550,6 +550,7 @@ export default function App() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('CIB');
   const [heroSearchFilters, setHeroSearchFilters] = useState({ wilaya: 'Toutes les wilayas', type: 'Tous' });
   const [searchQuery, setSearchQuery] = useState('');
+  const [recommendationFilter, setRecommendationFilter] = useState<'Top Qualité' | SiteCategory>('Top Qualité');
   const navigate = useNavigate();
 
   const handleSiteSelect = (site: Site) => {
@@ -568,6 +569,19 @@ export default function App() {
       return matchesCategory && matchesHeroWilaya && matchesHeroType && matchesSearch;
     });
   }, [categoryFilter, heroSearchFilters, searchQuery]);
+
+  const recommendedSites = useMemo(() => {
+    const baseSites = recommendationFilter === 'Top Qualité'
+      ? [...SITES]
+      : SITES.filter(site => site.categories.includes(recommendationFilter));
+
+    return baseSites
+      .sort((a, b) => {
+        if (b.rating !== a.rating) return b.rating - a.rating;
+        return a.price - b.price;
+      })
+      .slice(0, 4);
+  }, [recommendationFilter]);
 
   return (
     <Layout>
@@ -616,6 +630,68 @@ export default function App() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+            </section>
+
+            {/* Recommandations personnalisées */}
+            <section className="bg-[#F2F8F4] py-16 md:py-24">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
+                  <div>
+                    <span className="text-xs font-black text-emerald-700 uppercase tracking-widest block mb-3">Système de recommandation</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: 'Playfair Display, serif', color: '#0F6E56' }}>Recommandations personnalisées</h2>
+                    <p className="text-gray-600 max-w-2xl">Choisissez un style de visite et recevez une sélection personnalisée de sites algériens hautement cotés et adaptés à votre humeur.</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-500">Modifiez votre préférence pour voir de nouvelles suggestions instantanément.</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3 mb-10">
+                  {['Top Qualité', 'Aventure', 'Historique', 'Nature', 'Plage', 'Famille'].map(filter => (
+                    <button
+                      key={filter}
+                      onClick={() => setRecommendationFilter(filter as any)}
+                      className={`px-5 py-3 rounded-full font-bold text-sm transition-all ${recommendationFilter === filter ? 'bg-[#0F6E56] text-white shadow-lg' : 'bg-white text-gray-600 border border-gray-200 hover:border-[#0F6E56] hover:text-[#0F6E56]'}`}
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                  {recommendedSites.map((site) => (
+                    <motion.div
+                      key={site.id}
+                      whileHover={{ y: -6 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                      className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_14px_32px_-16px_rgba(15,110,86,0.25)] overflow-hidden cursor-pointer hover:shadow-[0_18px_48px_-18px_rgba(15,110,86,0.3)] transition-all"
+                      onClick={() => handleSiteSelect(site)}
+                    >
+                      <div className="relative h-56 overflow-hidden">
+                        <img src={site.image} alt={site.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-[10px] uppercase font-bold tracking-widest text-[#0F6E56]">{site.categories[0]}</div>
+                      </div>
+                      <div className="p-6">
+                        <div className="flex items-center justify-between mb-4 gap-3">
+                          <div>
+                            <h3 className="text-xl font-extrabold text-gray-900 mb-2 line-clamp-1">{site.name}</h3>
+                            <p className="text-xs uppercase tracking-[0.18em] text-gray-500 font-black">{site.wilaya}</p>
+                          </div>
+                          <div className="inline-flex items-center gap-1 bg-yellow-50 px-3 py-1 rounded-full text-amber-700 font-bold text-sm">
+                            <Star className="text-amber-500" size={14} /> {site.rating.toFixed(1)}
+                          </div>
+                        </div>
+                        <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-5">{site.description}</p>
+                        <div className="flex items-center justify-between text-sm font-bold text-[#0F6E56]">
+                          <span>{site.price === 0 ? 'Gratuit' : `${site.price} DZD`}</span>
+                          <span className="flex items-center gap-1">Voir <ArrowRight size={14} /></span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </section>
 
@@ -1101,6 +1177,9 @@ export default function App() {
                       <h2 className="font-extrabold text-3xl md:text-4xl leading-tight mb-2 tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
                         {selectedSite.name}
                       </h2>
+                      <p className="text-white/80 text-sm md:text-base line-clamp-2 leading-relaxed max-w-2xl">
+                        {selectedSite.description}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -1130,7 +1209,8 @@ export default function App() {
                       <motion.div key="step1" initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -50, opacity: 0 }} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <h3 className="font-extrabold text-2xl text-gray-900 mb-2">Date & Visiteurs</h3>
-                          <p className="text-sm text-gray-500 mb-6">Préparez votre visite à {selectedSite.name}.</p>
+                          <p className="text-sm text-gray-500 mb-3">Préparez votre visite à {selectedSite.name}.</p>
+                          <p className="text-sm text-gray-600 leading-relaxed mb-6">{selectedSite.description}</p>
                           
                           <div className="mb-4">
                             <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Date de visite</label>
