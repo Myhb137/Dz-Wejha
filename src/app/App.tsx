@@ -139,6 +139,19 @@ const HERO_SLIDES = [
   { src: "/Pont de Sidi M'Cid.jpg", label: "Pont Suspendu de Constantine" }
 ];
 
+const SITE_IMAGE_MAP: Record<string, string> = {
+  "Casbah d'Alger": "/casbah.jpg",
+  "Pont de Sidi M'Cid": "/Pont de Sidi M'Cid.jpg",
+  "Notre Dame d'Afrique": "/NotreDammeDafrique.jpg",
+  "Ruines de Timgad": "/ruins.jpg",
+  "Djurdjura National Park": "/Djurdjura National Park.jpg",
+  "Ketchaoua Mosque": "/mosque.jpg",
+  "Cap Carbon": "/cap-carbon.jpg",
+  "Maqam Echahid": "/makamShahid.jpg"
+};
+
+const getSiteImage = (site: Site) => SITE_IMAGE_MAP[site.name] ?? site.image;
+
 // ── Components ──────────────────────────────────────────────────────────────
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -551,6 +564,7 @@ export default function App() {
   const [heroSearchFilters, setHeroSearchFilters] = useState({ wilaya: 'Toutes les wilayas', type: 'Tous' });
   const [searchQuery, setSearchQuery] = useState('');
   const [recommendationFilter, setRecommendationFilter] = useState<'Top Qualité' | SiteCategory>('Top Qualité');
+  const [offerDates, setOfferDates] = useState<Record<number, string>>({});
   const navigate = useNavigate();
 
   const handleSiteSelect = (site: Site) => {
@@ -669,7 +683,7 @@ export default function App() {
                       onClick={() => handleSiteSelect(site)}
                     >
                       <div className="relative h-56 overflow-hidden">
-                        <img src={site.image} alt={site.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={getSiteImage(site)} alt={site.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                         <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-[10px] uppercase font-bold tracking-widest text-[#0F6E56]">{site.categories[0]}</div>
                       </div>
@@ -684,6 +698,27 @@ export default function App() {
                           </div>
                         </div>
                         <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-5">{site.description}</p>
+                        <div className="mb-4">
+                          <label className="block text-[10px] uppercase tracking-wider text-gray-400 font-black mb-3">Date de visite</label>
+                          <div
+                            onClick={(e) => e.stopPropagation()}
+                            className="rounded-[2rem] border border-[#D8E9E0] bg-[#F4FCF7] p-3 flex items-center gap-3 transition-all hover:border-[#0F6E56]"
+                          >
+                            <div className="w-12 h-12 rounded-3xl bg-white shadow-sm flex items-center justify-center text-[#0F6E56]">
+                              <Calendar size={20} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-[10px] uppercase tracking-[0.25em] text-gray-400 font-black mb-1">Sélectionnez une date</div>
+                              <input
+                                type="date"
+                                value={offerDates[site.id] ?? selectedDate}
+                                onChange={(e) => setOfferDates(prev => ({ ...prev, [site.id]: e.target.value }))}
+                                onClick={(e) => e.stopPropagation()}
+                                className="w-full bg-transparent text-sm font-bold text-gray-900 outline-none appearance-none cursor-pointer"
+                              />
+                            </div>
+                          </div>
+                        </div>
                         <div className="flex items-center justify-between text-sm font-bold text-[#0F6E56]">
                           <span>{site.price === 0 ? 'Gratuit' : `${site.price} DZD`}</span>
                           <span className="flex items-center gap-1">Voir <ArrowRight size={14} /></span>
@@ -748,7 +783,7 @@ export default function App() {
                     onClick={() => handleSiteSelect(site)}
                   >
                     <div className="relative h-64 overflow-hidden flex-shrink-0">
-                      <img src={site.image} alt={site.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                      <img src={getSiteImage(site)} alt={site.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
                       
                       {/* Top Badges */}
@@ -1063,8 +1098,7 @@ export default function App() {
                   onClick={() => handleSiteSelect(site)}
                 >
                   <div className="relative h-48 overflow-hidden flex-shrink-0">
-                    <img src={site.image} alt={site.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                    <img src={getSiteImage(site)} alt={site.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     
                     {/* Top Badges */}
                     <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/45 backdrop-blur-md rounded-full text-[10px] font-bold text-white flex items-center gap-1 border border-white/10">
@@ -1164,12 +1198,11 @@ export default function App() {
                 {/* Header for Steps 1-3 */}
                 {bookingStep < 4 && (
                   <div className="relative h-48 md:h-64 w-full flex-shrink-0">
-                    <img src={selectedSite.image} alt={selectedSite.name} className="w-full h-full object-cover" />
+                    <img src={getSiteImage(selectedSite)} alt={selectedSite.name} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                     <button onClick={() => setShowBookingModal(false)} className="absolute top-6 right-6 p-2.5 bg-black/40 hover:bg-black/60 border border-white/20 text-white rounded-full backdrop-blur-md transition-colors z-10 shadow-md">
                       <X size={20} />
                     </button>
-                    
                     <div className="absolute bottom-6 left-6 right-6 text-white text-left">
                       <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">
                         <MapPin size={14} /> <span>{selectedSite.wilaya} • Wilaya {selectedSite.wilayaNumber}</span>
