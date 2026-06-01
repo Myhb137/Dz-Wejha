@@ -18,7 +18,7 @@ const QUESTIONS = [
     question: "Quel site est surnommé la 'Pompéi de l'Afrique du Nord' ?",
     options: ["Casbah d'Alger", "Ruines de Timgad", "Djemila", "Tipaza"],
     answer: "Ruines de Timgad",
-    image: "https://images.unsplash.com/photo-1631995872935-d964797502e0?w=800",
+    image: "https://images.pexels.com/photos/1531660/pexels-photo-1531660.jpeg?auto=compress&cs=tinysrgb&w=800",
     fact: "Timgad a été fondée par l'empereur Trajan en l'an 100 de notre ère."
   },
   {
@@ -26,7 +26,7 @@ const QUESTIONS = [
     question: "Dans quelle wilaya se trouve le parc national du Tassili n'Ajjer ?",
     options: ["Tamanrasset", "Illizi", "Djanet", "Adrar"],
     answer: "Djanet",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800",
+    image: "https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=800",
     fact: "C'est l'un des plus grands musées de plein air au monde, célèbre pour ses peintures rupestres."
   },
   {
@@ -34,7 +34,7 @@ const QUESTIONS = [
     question: "Quel pont suspendu est le symbole de la ville de Constantine ?",
     options: ["Sidi Rached", "Mellah Slimane", "Sidi M'Cid", "El Kantara"],
     answer: "Sidi M'Cid",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+    image: "https://images.pexels.com/photos/2832034/pexels-photo-2832034.jpeg?auto=compress&cs=tinysrgb&w=800",
     fact: "Inauguré en 1912, il culmine à 175 mètres au-dessus du Rhummel."
   },
   {
@@ -42,7 +42,7 @@ const QUESTIONS = [
     question: "La Vallée du M'zab est célèbre pour son architecture unique. Où se trouve-t-elle ?",
     options: ["Béchar", "Ghardaïa", "Laghouat", "El Oued"],
     answer: "Ghardaïa",
-    image: "https://images.unsplash.com/photo-1669356771785-3af414591b4a?w=800",
+    image: "https://images.pexels.com/photos/3217686/pexels-photo-3217686.jpeg?auto=compress&cs=tinysrgb&w=800",
     fact: "Les cinq cités de la vallée forment une 'Pentapole' classée au patrimoine mondial de l'UNESCO."
   },
   {
@@ -50,7 +50,7 @@ const QUESTIONS = [
     question: "Quel monument d'Alger a été érigé en mémoire des combattants de la guerre d'indépendance ?",
     options: ["La Grande Poste", "Le Palais du Peuple", "Maqam Echahid", "Ketchaoua"],
     answer: "Maqam Echahid",
-    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800",
+    image: "https://images.pexels.com/photos/3214995/pexels-photo-3214995.jpeg?auto=compress&cs=tinysrgb&w=800",
     fact: "Inauguré en 1982, il culmine à 92 mètres de hauteur."
   }
 ];

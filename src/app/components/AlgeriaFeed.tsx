@@ -37,7 +37,7 @@ const INITIAL_DATA: InfoItem[] = [
     title: "L'art du Couscous Algérien",
     category: 'Gastronomie',
     description: "Classé au patrimoine immatériel de l'UNESCO, le couscous est bien plus qu'un plat : c'est un symbole de partage et de convivialité qui varie selon les régions (Kabylie, Sud, Est, Ouest).",
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800",
+    image: "https://images.pexels.com/photos/36984667/pexels-photo-36984667.jpeg",
     date: "14 Mai 2026",
     trending: true,
     views: 2847
@@ -47,7 +47,7 @@ const INITIAL_DATA: InfoItem[] = [
     title: "Le Tassili n'Ajjer : Plus grand musée à ciel ouvert",
     category: 'Nature',
     description: "Avec plus de 15 000 dessins et gravures rupestres, ce plateau montagneux raconte l'histoire de l'humanité datant de plus de 10 000 ans.",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800",
+    image: "https://www.thecasbahpost.com/wp-content/uploads/2016/09/Tassili-Roches.jpg",
     date: "12 Mai 2026",
     trending: true,
     views: 3521
@@ -57,7 +57,7 @@ const INITIAL_DATA: InfoItem[] = [
     title: "L'épopée de l'Émir Abdelkader",
     category: 'Histoire',
     description: "Fondateur de l'État algérien moderne, l'Émir Abdelkader était un chef militaire, poète et philosophe reconnu mondialement pour son humanisme.",
-    image: "https://images.unsplash.com/photo-1638733221295-886884772a57?w=800",
+    image: "https://www.arabnews.fr/sites/default/files/styles/670x395/public/2024-04/FF.jpg?h=c71d0c67",
     date: "10 Mai 2026",
     views: 1925
   }
@@ -70,16 +70,16 @@ const MORE_DATA: InfoItem[][] = [
       title: "La Casbah : Un labyrinthe d'histoire",
       category: 'Culture',
       description: "Ses ruelles étroites et ses maisons traditionnelles en font l'un des sites les plus emblématiques de la Méditerranée.",
-      image: "../public/pexels-erkocphoto-26823221.jpg",
+      image: "https://lalgerieaujourdhui.dz/wp-content/uploads/2024/02/La-casbah-dAlger.jpg",
       date: "08 Mai 2026",
       views: 2156
     },
     {
       id: '5',
-      title: "Les Jardins de Sidi M'Cid",
+      title: "Les Gorges du Rhummel, Constantine",
       category: 'Nature',
       description: "Perchés sur les rochers de Constantine, ces jardins offrent une vue imprenable sur les gorges du Rhummel.",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRefo4rTrEkxMS-jmcHBITZfqtRUcVfNYwyoA&stlBwA&s",
       date: "06 Mai 2026",
       views: 1834
     }
@@ -90,7 +90,7 @@ const MORE_DATA: InfoItem[][] = [
       title: "Le Karakou : Élégance Algéroise",
       category: 'Culture',
       description: "Un costume traditionnel brodé de fil d'or, témoignant du savoir-faire artisanal séculaire des femmes d'Alger.",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+      image: "https://touhfawebmarket.dz/wp-content/uploads/2025/10/karakou-dz.jpg",
       date: "04 Mai 2026",
       views: 1456
     },
@@ -99,7 +99,7 @@ const MORE_DATA: InfoItem[][] = [
       title: "Taghit : L'enchanteresse du désert",
       category: 'Nature',
       description: "Une oasis entourée de dunes de sable doré, célèbre pour son ksar millénaire et ses gravures rupestres.",
-      image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgYUimGWQ5Hli1bWP5O6PS9lcH7YvqafnMRQ&s",
       date: "02 Mai 2026",
       views: 2678
     }
