@@ -23,7 +23,9 @@ export const locationImages: Record<string, string> = {
   "Sablettes Beach Alger": "https://i0.wp.com/www.24hdz.dz/wp-content/uploads/2021/02/145062074_10157592396051034_3432915428098182600_n.jpg?fit=960%2C720&ssl=1",
   "Chenoua Beach": "https://wildyness.com/media/preview/7280/large",
   "Plage Tichy": "https://coinventmediastorage.blob.core.windows.net/media-storage-container/gphoto_ChIJlWtfcSLR8hIR5S0gEfzehRs_0.jpg",
-  "Plage les Andalouses": "https://beachsearcher.fr/images/beaches/12201029/DZ201029_fit_550_300.jpg"
+  "Plage les Andalouses": "https://beachsearcher.fr/images/beaches/12201029/DZ201029_fit_550_300.jpg",
+  "Tassili n'Ajjer": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGF7Qk6cTj8QCJpmH_ZJMrciTDHZ1JF2K8PKG-xyuN3GAmNXPm6w1PBs1HX0Z0N46ujX6CBlBqQZJoPMeg9OIkVJxO2IogoAfrTtkTsEN5sSiW8u6CdA9HR7KbG59sMfMt4aBgjR_0bqEO8=s1360-w1360-h1020-rw",
+  "Nuits à Zeralda": "https://images.trvl-media.com/lodging/125000000/124190000/124184400/124184380/w1156h762x4y0-cb7f4ad4.jpg?impolicy=fcrop&w=500&h=333&p=1&q=medium"
 };
 
 const DEFAULT_IMAGE = "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&w=800"; // Cap Carbon fallback
