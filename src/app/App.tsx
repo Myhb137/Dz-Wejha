@@ -633,6 +633,7 @@ export default function App() {
   const [categoryFilter, setCategoryFilter] = useState<SiteCategory | 'Tous'>('Tous');
   const [visitorCount, setVisitorCount] = useState(2);
   const [selectedDate, setSelectedDate] = useState('2026-05-24');
+  const [selectedTime, setSelectedTime] = useState('10:00');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('CIB');
   const [heroSearchFilters, setHeroSearchFilters] = useState({ wilaya: 'Toutes les wilayas', type: 'Tous' });
   const [searchQuery, setSearchQuery] = useState('');
@@ -1318,9 +1319,15 @@ export default function App() {
                           <p className="text-sm text-gray-500 mb-3">Préparez votre visite à {selectedSite.name}.</p>
                           <p className="text-sm text-gray-600 leading-relaxed mb-6">{selectedSite.description}</p>
                           
-                          <div className="mb-4">
-                            <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Date de visite</label>
-                            <input type="date" value={selectedDate} onChange={e => setSelectedDate(e.target.value)} className="w-full p-4 rounded-2xl border border-gray-200 bg-gray-50 font-bold text-gray-800 outline-none focus:border-[#0F6E56] transition-colors" />
+                          <div className="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                              <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Date de visite</label>
+                              <input type="date" value={selectedDate} onChange={e => setSelectedDate(e.target.value)} className="w-full p-4 rounded-2xl border border-gray-200 bg-gray-50 font-bold text-gray-800 outline-none focus:border-[#0F6E56] transition-colors" />
+                            </div>
+                            <div>
+                              <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Heure de visite</label>
+                              <input type="time" value={selectedTime} onChange={e => setSelectedTime(e.target.value)} className="w-full p-4 rounded-2xl border border-gray-200 bg-gray-50 font-bold text-gray-800 outline-none focus:border-[#0F6E56] transition-colors" />
+                            </div>
                           </div>
                           
                           <div className="bg-white p-4 rounded-2xl border border-gray-200">
@@ -1403,6 +1410,25 @@ export default function App() {
                           ))}
                         </div>
 
+                        {(paymentMethod === 'Edahabia' || paymentMethod === 'CIB') && (
+                          <div className="bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100 space-y-4">
+                            <div>
+                              <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Numéro de carte</label>
+                              <input type="text" maxLength={16} className="w-full p-4 rounded-xl border border-gray-200 focus:border-[#0F6E56] outline-none transition-colors font-mono" placeholder="0000 0000 0000 0000" />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">Date d'expiration</label>
+                                <input type="text" maxLength={5} className="w-full p-4 rounded-xl border border-gray-200 focus:border-[#0F6E56] outline-none transition-colors font-mono" placeholder="MM/AA" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase mb-2">CVV</label>
+                                <input type="text" maxLength={3} className="w-full p-4 rounded-xl border border-gray-200 focus:border-[#0F6E56] outline-none transition-colors font-mono" placeholder="123" />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                         <div className="bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
                           <div className="flex justify-between mb-3"><span className="text-gray-500 font-medium">Billet d'entrée ({visitorCount}x)</span><span className="font-bold">{selectedSite.price * visitorCount} DZD</span></div>
                           <div className="flex justify-between mb-3"><span className="text-gray-500 font-medium">Frais de service</span><span className="font-bold text-[#0F6E56]">Gratuit</span></div>
@@ -1468,7 +1494,7 @@ export default function App() {
                             </div>
                             <div>
                               <span className="text-[10px] text-white/60 font-bold uppercase tracking-wider block">Date</span>
-                              <span className="font-extrabold text-sm">{new Date(selectedDate).toLocaleDateString('fr-FR')}</span>
+                              <span className="font-extrabold text-sm">{new Date(selectedDate).toLocaleDateString('fr-FR')} à {selectedTime}</span>
                             </div>
                           </div>
 
