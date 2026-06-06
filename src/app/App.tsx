@@ -260,9 +260,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             : 'bg-white/10 backdrop-blur-md border-white/20 shadow-none'
         }`}>
           <Link to="/" className="flex items-center gap-2 md:gap-3 cursor-pointer group">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-[1rem] bg-gradient-to-br from-[#0F6E56] to-[#1D9E75] flex items-center justify-center group-hover:scale-105 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-[#0F6E56]/30">
-              <MapPin className="text-white w-5 h-5 md:w-6 md:h-6 drop-shadow-md" />
-            </div>
+            <img
+              src="/logo.png"
+              alt="Wejha Logo"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 drop-shadow-lg"
+            />
             <span className={`font-black text-xl md:text-2xl tracking-tighter transition-colors duration-300 ${(scrolled || !isHome) ? 'text-[#0F6E56]' : 'text-white'}`}>WEJHA</span>
           </Link>
 
@@ -354,11 +356,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-[#0F6E56] flex items-center justify-center">
-                  <MapPin className="text-white w-6 h-6" />
-                </div>
-                <span className="font-black text-2xl tracking-tighter">WEJHA AI</span>
+              <div className="flex items-center gap-4 mb-8">
+                <img
+                  src="/logo.png"
+                  alt="Wejha Logo"
+                  className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_0_20px_rgba(29,158,117,0.4)]"
+                />
+                <span className="font-black text-3xl md:text-4xl tracking-tighter">WEJHA</span>
               </div>
               <p className="text-white/60 leading-relaxed mb-8">La première plateforme de gestion intelligente du patrimoine touristique algérien.</p>
               <div className="flex gap-4">
