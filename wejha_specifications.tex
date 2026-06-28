@@ -1,0 +1,311 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=25mm,
+    bottom=25mm,
+    right=20mm
+}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+
+% --- Custom Colors (Matching WEJHA Design System) ---
+\definecolor{wejhaprimary}{HTML}{0F6E56}       % Primary Green
+\definecolor{wejhasecondary}{HTML}{1D9E75}     % Secondary Green
+\definecolor{wejhaaccent}{HTML}{BA7517}        % Accent Amber
+\definecolor{wejhadark}{HTML}{05281E}          % Deep Dark Green/Black
+\definecolor{wejhabg}{HTML}{F8F5EF}            % Light Sand Background
+\definecolor{lightgrey}{HTML}{F3F4F6}          % Light Grey for tables
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=wejhaprimary,
+    filecolor=wejhaaccent,      
+    urlcolor=wejhasecondary,
+    pdftitle={Cahier des Charges - WEJHA},
+    pdfpagemode=FullScreen,
+}
+
+% --- Header and Footer Setup ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{wejhaprimary}{\textbf{WEJHA}} -- Plateforme Touristique Algérienne}
+\fancyhead[R]{\textcolor{gray}{\leftmark}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\textcolor{wejhaprimary}{MVP Specifications}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Title Section Customization ---
+\titleformat{\section}
+  {\color{wejhaprimary}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\color{wejhasecondary}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{wejhaaccent}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% --- Code Listing Customization ---
+\lstdefinelanguage{TypeScript}{
+  keywords={abstract, any, as, boolean, break, case, catch, class, console, const, continue, debugger, declare, default, delete, do, else, enum, export, extends, false, finally, for, from, function, get, if, implements, import, in, instanceof, interface, let, module, new, null, number, of, package, private, protected, public, readonly, require, return, set, static, string, super, switch, this, throw, true, try, type, typeof, var, void, while, with, yield},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+    language=TypeScript,
+    backgroundcolor=\color{lightgrey},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    commentstyle=\color{gray},
+    keywordstyle=\color{wejhaprimary}\bfseries,
+    stringstyle=\color{wejhaaccent}
+}
+
+% --- Document ---
+\begin{document}
+
+% --- Page de Garde ---
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    
+    % Logo Placeholder or Title
+    \begin{tcolorbox}[colback=wejhaprimary,colframe=wejhaprimary,arc=15pt,halign=center,width=4cm]
+        \textcolor{white}{\Huge\textbf{W}}
+    \end{tcolorbox}
+    
+    \vspace{1cm}
+    \textcolor{wejhaprimary}{\Huge \textbf{WEJHA}}\\
+    \vspace{0.4cm}
+    \textcolor{gray}{\Large Spécifications Fonctionnelles et Techniques}\\
+    \vspace{0.2cm}
+    \textcolor{wejhaaccent}{\large Version MVP -- Algérie}
+    
+    \vspace{2.5cm}
+    
+    \begin{tcolorbox}[colback=wejhabg, colframe=wejhaprimary, title=Informations du Projet, arc=8pt]
+        \begin{tabular}{ll}
+            \textbf{Auteur :} & Équipe de Développement WEJHA \\
+            \textbf{Date :} & \today \\
+            \textbf{Statut :} & Prêt pour Copy-Paste \\
+            \textbf{Technologies clés :} & React, TypeScript, Vite, Google Gemini API \\
+            \textbf{Version du document :} & 1.1.0
+        \end{tabular}
+    \end{tcolorbox}
+    
+    \vspace{3cm}
+    
+    \textcolor{wejhadark}{\large\textit{«~Votre direction ultime pour explorer la richesse du patrimoine et des sites naturels en Algérie.~»}}
+    
+    \vfill
+    
+    \textcolor{gray}{\small Document confidentiel -- Destiné à l'équipe technique}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+% --- Section 1: Introduction ---
+\section{Présentation du Projet}
+\subsection{Contexte et Objectifs}
+L'Algérie dispose d'un patrimoine culturel, historique et naturel exceptionnel, abritant de nombreux sites classés au patrimoine mondial de l'UNESCO. Cependant, l'accès à l'information et la réservation simplifiée pour ces destinations restent sous-optimaux pour les touristes nationaux et internationaux.
+
+\textbf{WEJHA} (وجهة) est une plateforme moderne de découverte et de réservation de visites touristiques sous forme de MVP (Minimum Viable Product). Elle vise à centraliser les informations sur les sites phares des 58 Wilayas d'Algérie, en proposant :
+\begin{itemize}
+    \item Un catalogue enrichi de sites touristiques avec filtrage avancé.
+    \item Un système de réservation de créneaux avec gestion d'affluence.
+    \item Une expérience utilisateur (UX) moderne et réactive adaptée aux mobiles.
+    \item Des fonctionnalités innovantes telles qu'un chatbot d'IA de voyage et un mini-jeu de quiz patrimonial.
+\end{itemize}
+
+\subsection{Public Cible}
+\begin{enumerate}
+    \item \textbf{Touristes Locaux :} Résidents souhaitant explorer d'autres wilayas durant les week-ends ou vacances.
+    \item \textbf{Diaspora et Touristes Étrangers :} Visiteurs à la recherche d'itinéraires et d'informations fiables.
+    \item \textbf{Opérateurs Touristiques :} Guides et gestionnaires de sites pour la régulation des flux de visiteurs.
+\end{enumerate}
+
+% --- Section 2: Spécifications Fonctionnelles ---
+\section{Spécifications Fonctionnelles}
+
+\subsection{Base de Données des Sites Touristiques}
+Le MVP intègre un catalogue initial de plus de 85 sites touristiques répartis sur l'ensemble du territoire national algérien. Chaque site est caractérisé par :
+\begin{itemize}
+    \item \textbf{Identifiant unique (ID) :} Numérique.
+    \item \textbf{Nom :} Ex. \textit{Casbah d'Alger}, \textit{Tassili n'Ajjer}, \textit{Pont de Sidi M'Cid}.
+    \item \textbf{Wilaya \& Numéro :} Liés à la nomenclature officielle (Ex. Alger - 16, Constantine - 25, Djanet - 56).
+    \item \textbf{Catégories multiples :} Historique, Nature, Sahara, Religieux, UNESCO, Aventure, Culture, Architecture, Plage, Vue Panoramique, Luxe, Famille, Neige, etc.
+    \item \textbf{Prix d'entrée (DZD) :} Tarification locale.
+    \item \textbf{Évaluation :} Note moyenne sur 5.0.
+    \item \textbf{Durée moyenne de visite :} Exprime en heures ou jours.
+    \item \textbf{Niveau d'accessibilité :} Accessible, Moyenne, Difficile (pour randonnées ou désert).
+\end{itemize}
+
+\subsection{Système de Filtrage Avancé}
+Afin de faciliter la recherche parmi le large catalogue, la plateforme intègre un composant de filtrage multicritères fonctionnant en temps réel :
+\begin{table}[h]
+    \centering
+    \caption{Structure du système de filtrage}
+    \vspace{0.2cm}
+    \begin{tabularx}{\textwidth}{lX}
+        \toprule
+        \textbf{Type de Filtre} & \textbf{Options / Comportement} \\
+        \midrule
+        \textbf{Catégories} & Sélection multiple parmi les 15+ catégories du patrimoine. \\
+        \textbf{Gamme de Prix} & Sélecteur de prix minimal et maximal (de 0 DZD à 5000 DZD). \\
+        \textbf{Évaluation (Rating)} & Filtrage par note minimale (ex. $\ge$ 4.0 étoiles). \\
+        \textbf{Accessibilité} & Choix exclusif (Accessible, Moyenne, Difficile). \\
+        \textbf{Durée} & Filtrage selon le type d'excursion (Court séjour, Journée, Multi-jours). \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Assistant de Voyage IA (Wejha AI)}
+Intégré sous forme de widget flottant interactif, l'assistant \textbf{Wejha AI} exploite l'API Google Gemini pour guider les utilisateurs. Ses capacités incluent :
+\begin{itemize}
+    \item \textbf{Recommandations contextuelles :} Analyse des profils de voyageurs sélectionnés (ex. \textit{«~Budget < 500 DZD~»}, \textit{«~UNESCO \& Histoire~»}, \textit{«~Aventure Sahara~»}).
+    \item \textbf{Chat interactif :} Réponses en temps réel sur les conseils de voyage en Algérie (périodes idéales pour le Grand Sud, transport, formalités).
+    \item \textbf{Redirection interactive :} Les noms de sites mentionnés par l'IA sous la forme \textbf{**Nom du Site**} sont cliquables et ouvrent directement la fiche du site sur la plateforme.
+\end{itemize}
+
+\subsection{Gamification : Le Défi Patrimoine}
+Un jeu-quiz interactif est intégré pour sensibiliser les utilisateurs au patrimoine algérien et augmenter le taux de rétention :
+\begin{itemize}
+    \item \textbf{Structure :} 5 questions tirées au sort sur l'histoire et la géographie des monuments nationaux.
+    \item \textbf{Apprentissage actif :} Chaque question affiche une anecdote descriptive (\textit{«~Le saviez-vous ?~»}) après validation.
+    \item \textbf{Grades décernés :}
+        \begin{itemize}
+            \item \textbf{5/5 :} Ambassadeur du Patrimoine 🇩🇿
+            \item \textbf{3-4/5 :} Explorateur Éclairé
+            \item \textbf{0-2/5 :} Voyageur Curieux
+        \end{itemize}
+\end{itemize}
+
+\subsection{Module de Réservation et Gestion d'Affluence}
+Pour chaque site, l'utilisateur peut planifier sa visite :
+\begin{enumerate}
+    \item \textbf{Choix de la date et du créneau horaire} (Matin, Après-midi, Soir).
+    \item \textbf{Indicateur d'affluence en temps réel} (\textit{Faible}, \textit{Modérée}, \textit{Forte}, \textit{Complet}) calculé pour réguler les visites de sites fragiles (ex. Casbah ou musées).
+    \item \textbf{Moyens de Paiement acceptés :} Cartes locales interbancaires (CIB, Edahabia) et option de paiement en espèces sur site (Cash).
+\end{enumerate}
+
+% --- Section 3: Design et Expérience Utilisateur ---
+\section{Design et Identité Visuelle}
+La plateforme applique une esthétique moderne et épurée combinant des couleurs inspirées des paysages algériens (mer, oasis, dunes et artisanat traditionnel).
+
+\subsection{Charte Graphique (Design Tokens)}
+\begin{itemize}
+    \item \textbf{Couleur Primaire (Vert Oasis) :} \texttt{\#0F6E56} (utilisé pour les boutons principaux, en-têtes et éléments actifs).
+    \item \textbf{Couleur Secondaire (Vert Menthe) :} \texttt{\#1D9E75} (utilisé pour les accents et les états de survol).
+    \item \textbf{Couleur d'Accent (Ambre Désert) :} \texttt{\#BA7517} (utilisé pour les notes, prix et distinctions).
+    \item \textbf{Arrière-plan (Sable Clair) :} \texttt{\#F8F5EF} (donne une texture chaleureuse et naturelle).
+    \item \textbf{Surface (Blanc Pur) :} \texttt{\#FFFFFF} (utilisé pour les cartes et conteneurs).
+\end{itemize}
+
+\subsection{Typographie et Espacement}
+\begin{itemize}
+    \item \textbf{Polices :} \textit{DM Sans} pour le corps de texte et l'interface utilisateur générale ; \textit{Playfair Display} pour les titres majeurs et invitations à l'exploration.
+    \item \textbf{Bordures :} Coins arrondis généreux (\texttt{12px} à \texttt{24px}) pour adoucir l'interface et évoquer l'architecture vernaculaire.
+\end{itemize}
+
+\subsection{Optimisation Mobile-First}
+L'interface a été conçue en priorité pour les téléphones intelligents en raison de l'usage prédominant en situation de mobilité :
+\begin{itemize}
+    \item \textbf{Navigation Basse (MobileBottomNav) :} Barre fixe en bas de l'écran avec 5 onglets d'accès rapide (Accueil, Catalogue, Favoris, Défi, IA).
+    \item \textbf{Menu Latéral coulissant (MobileNav) :} Se déploie de la droite pour l'accès aux paramètres de profil et à la connexion.
+\end{itemize}
+
+% --- Section 4: Architecture Technique ---
+\section{Architecture Technique et Code}
+
+\subsection{Pile Technologique (Stack)}
+\begin{itemize}
+    \item \textbf{Frontend :} React 18 / 19 avec TypeScript pour un typage statique robuste.
+    \item \textbf{Build Tool :} Vite pour des performances optimales en développement et en production.
+    \item \textbf{Animations :} Framer Motion / Motion.react pour des transitions fluides et micro-interactions tactiles.
+    \item \textbf{Styles :} CSS Vanilla et Tailwind CSS pour une conception adaptative.
+    \item \textbf{Icônes :} Lucide React.
+\end{itemize}
+
+\subsection{Structure des Composants Majeurs}
+L'application est structurée de manière modulaire autour de composants réutilisables clés :
+\begin{lstlisting}[caption={Exemple de typage pour les sites touristiques}]
+type SiteCategory = 'Historique' | 'Nature' | 'Sahara' | 'Religieux' | 'UNESCO' | 'Aventure' | 'Culture' | 'Architecture' | 'Plage' | 'Vue Panoramique' | 'Luxe' | 'Famille' | 'Neige' | 'Vie Nocturne' | 'Musée' | 'Randonnée' | 'Monument' | 'Jardin';
+
+interface Site {
+  id: number;
+  name: string;
+  wilaya: string;
+  wilayaNumber: number;
+  categories: SiteCategory[];
+  price: number;
+  rating: number;
+  duration: string;
+  accessibility: string;
+  image: string;
+  description: string;
+}
+\end{lstlisting}
+
+\subsection{Composants UI développés}
+\begin{itemize}
+    \item \textbf{\texttt{AdvancedFilters.tsx} :} Gère l'état et l'interface utilisateur des filtres complexes avec un indicateur du nombre de filtres actifs.
+    \item \textbf{\texttt{SiteCard.tsx} :} Affiche les sites en deux variantes : \texttt{grid} (vue compacte de catalogue) et \texttt{featured} (mise en avant grand format dans le feed).
+    \item \textbf{\texttt{SkeletonLoader.tsx} :} Réduit le temps de chargement perçu grâce à des squelettes animés avec effet de miroitement (\textit{shimmer effect}).
+    \item \textbf{\texttt{ErrorBoundary.tsx} :} Intercepte les erreurs de rendu React au niveau des composants et propose un écran de secours personnalisé avec bouton de réinitialisation.
+\end{itemize}
+
+% --- Section 5: Exigences Non-Fonctionnelles ---
+\section{Exigences Non-Fonctionnelles}
+
+\subsection{Résilience et Gestion des Erreurs}
+\begin{tcolorbox}[colback=red!5,colframe=red!50!black,title=Zéro Écran Blanc (White Screen of Death)]
+    Toutes les routes critiques et les composants consommant des données asynchrones (comme l'assistant IA et le flux d'actualités) doivent être enveloppés dans un \texttt{ErrorBoundary}. L'application ne doit jamais crasher globalement à cause d'une panne d'API.
+\end{tcolorbox}
+
+\subsection{Accessibilité (WCAG 2.1 AA)}
+\begin{itemize}
+    \item \textbf{Contraste :} Respect des ratios de contraste de couleur pour les malvoyants (minimum 4.5:1).
+    \item \textbf{Navigation au Clavier :} Prise en charge des focus visibles pour tous les boutons personnalisés (\texttt{Button.tsx}) et éléments interactifs.
+    \item \textbf{Lecteurs d'écran :} Balises sémantiques HTML5 (\texttt{<header>}, \texttt{<nav>}, \texttt{<main>}, \texttt{<footer>}) et attributs \texttt{aria-label} appropriés.
+\end{itemize}
+
+\subsection{Performance}
+\begin{itemize}
+    \item \textbf{Temps de Chargement Perçu :} Utilisation systématique de squelettes de chargement (\textit{Skeletons}) lors des appels d'API afin d'abaisser la perception d'attente de 2 à 3 secondes.
+    \item \textbf{Optimisation des Images :} Redimensionnement dynamique via des URL distantes optimisées (\texttt{unsplash/pexels}) utilisant les paramètres de largeur \texttt{w=800}.
+\end{itemize}
+
+\end{document}
